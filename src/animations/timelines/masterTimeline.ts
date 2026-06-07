@@ -1,5 +1,5 @@
 import { ScrollTrigger, registerGSAP } from '@/animations/registerGSAP'
-import { MUSEUM_TRACK_SCROLL_TRIGGER_ID, isAutoplayDriving } from '@/lib/autoplayScroll'
+import { MUSEUM_TRACK_SCROLL_TRIGGER_ID } from '@/lib/autoplayScroll'
 import { useNarrativeStore } from '@/stores/narrativeStore'
 import { useEffect, useRef } from 'react'
 
@@ -15,10 +15,9 @@ export function initMasterTimeline(container: HTMLElement) {
       id: MUSEUM_TRACK_SCROLL_TRIGGER_ID,
       trigger: container,
       start: 'top top',
-      end: 'bottom bottom',
-      scrub: 0.35,
+      end: 'bottom top',
+      scrub: 0.12,
       onUpdate: (self) => {
-        if (isAutoplayDriving()) return
         setScrollProgress(self.progress)
       },
     }),

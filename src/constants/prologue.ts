@@ -11,10 +11,10 @@ export const PROLOGUE_EVENT_COUNT = 12
 
 export const PROLOGUE_SCROLL_VH = PROLOGUE_EVENT_COUNT * PROLOGUE_BEAT_VH
 
-/** ~10vh scroll per wheel notch — same feel as ecosystem AA years */
+/** ~10vh scroll per wheel notch — see scrollPacing.ts (uniform all zones) */
 export const WHEEL_PROLOGUE_PROGRESS_PER_NOTCH = 10 / PROLOGUE_SCROLL_VH
 
-/** Full prologue at 1× autoplay — ~38s (rebased from former 3×) */
+/** @deprecated Use UNIFORM_VH_PER_SECOND_AT_1X in scrollPacing.ts */
 export const AUTOPLAY_PROLOGUE_PROGRESS_PER_SECOND = 3 / 114
 
 /** Legacy alias — year wheel in ecosystem only */

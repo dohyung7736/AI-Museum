@@ -27,7 +27,7 @@ export const BUFFER_ZONE_END = TERMINAL_ZONE_START
 export const MACHINE_ZONE_START = TERMINAL_ZONE_START
 export const MACHINE_HANDOFF_START = ECOSYSTEM_ZONE_END * 0.92
 
-/** Autoplay — ~0.875 AA years per second at 1×; slower than prologue vh pace */
+/** @deprecated Use UNIFORM_VH_PER_SECOND_AT_1X in scrollPacing.ts */
 export const AUTOPLAY_AA_YEARS_PER_SECOND = 0.875
 
 export const AA_EPOCH = {

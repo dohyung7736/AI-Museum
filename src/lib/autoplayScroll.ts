@@ -1,6 +1,7 @@
-import { AA_EPOCH, AUTOPLAY_AA_YEARS_PER_SECOND } from '@/constants/timeline'
-import { AUTOPLAY_PROLOGUE_PROGRESS_PER_SECOND } from '@/constants/prologue'
-import { mapAAToProgress, mapProgressToAASmooth } from '@/lib/aaTimeline'
+import { UNIFORM_VH_PER_SECOND_AT_1X } from '@/constants/scrollPacing'
+import { PROLOGUE_SCROLL_VH } from '@/constants/prologue'
+import { SCROLL_HEIGHT_VH } from '@/constants/timeline'
+import { TOTAL_JOURNEY_VH } from '@/lib/scrollJourney'
 import {
   getPrologueScrollTrigger,
   resolvePrologueScrollY,
@@ -11,7 +12,7 @@ import { ScrollTrigger } from '@/animations/registerGSAP'
 
 export const MUSEUM_TRACK_SCROLL_TRIGGER_ID = 'museum-track'
 
-export { AUTOPLAY_AA_YEARS_PER_SECOND, AUTOPLAY_PROLOGUE_PROGRESS_PER_SECOND }
+export { UNIFORM_VH_PER_SECOND_AT_1X as AUTOPLAY_VH_PER_SECOND_AT_1X }
 
 let autoplayDriving = false
 
@@ -120,18 +121,17 @@ export function scrollToStart(lenis: LenisInstance | null): void {
   scrollToY(0, lenis)
 }
 
-/** Progress units per second at the current ecosystem scroll position */
-export function getProgressPerSecond(progress: number): number {
-  const aa = mapProgressToAASmooth(progress)
-  if (aa >= AA_EPOCH.max) return 0
-
-  const aaNext = Math.min(AA_EPOCH.max, aa + AUTOPLAY_AA_YEARS_PER_SECOND)
-  const p0 = mapAAToProgress(aa)
-  const p1 = mapAAToProgress(aaNext)
-
-  return Math.max(p1 - p0, 0)
+/** Progress units per second at 1× — derived from uniform vh pacing */
+export function getProgressPerSecond(_progress: number): number {
+  const vhPerSec = UNIFORM_VH_PER_SECOND_AT_1X
+  return vhPerSec / SCROLL_HEIGHT_VH
 }
 
 export function getPrologueProgressPerSecond(_progress: number): number {
-  return AUTOPLAY_PROLOGUE_PROGRESS_PER_SECOND
+  const vhPerSec = UNIFORM_VH_PER_SECOND_AT_1X
+  return vhPerSec / PROLOGUE_SCROLL_VH
+}
+
+export function getJourneyProgressPerSecond(): number {
+  return UNIFORM_VH_PER_SECOND_AT_1X / TOTAL_JOURNEY_VH
 }

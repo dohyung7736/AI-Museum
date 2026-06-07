@@ -1,5 +1,4 @@
 import { ScrollTrigger, registerGSAP } from '@/animations/registerGSAP'
-import { isAutoplayDriving } from '@/lib/autoplayScroll'
 import { PROLOGUE_TRACK_SCROLL_TRIGGER_ID } from '@/lib/prologueTimeline'
 import { useNarrativeStore } from '@/stores/narrativeStore'
 import { useEffect, useRef } from 'react'
@@ -13,10 +12,9 @@ export function initPrologueTimeline(container: HTMLElement) {
     id: PROLOGUE_TRACK_SCROLL_TRIGGER_ID,
     trigger: container,
     start: 'top top',
-    end: 'bottom bottom',
-    scrub: 0.35,
+    end: 'bottom top',
+    scrub: 0.12,
     onUpdate: (self) => {
-      if (isAutoplayDriving()) return
       setPrologueProgress(self.progress)
     },
   })

@@ -20,6 +20,7 @@ import { MuseumScrollTrack } from '@/components/scroll/MuseumScrollTrack'
 import { SpecimenOcean } from '@/components/specimens/SpecimenOcean'
 import { useMousePosition } from '@/hooks/useMousePosition'
 import { resolveWheelScrollDelta } from '@/lib/yearWheelScroll'
+import { syncNarrativeFromScroll } from '@/lib/syncNarrativeFromScroll'
 import { useEffect, useState } from 'react'
 
 function GlobalWheelScrollDampener() {
@@ -42,11 +43,11 @@ function GlobalWheelScrollDampener() {
       if (lenis) {
         const next = Math.max(0, Math.min(lenis.scroll + delta, maxScroll))
         lenis.scrollTo(next, { programmatic: false })
+        syncNarrativeFromScroll(lenis, next)
       } else {
-        window.scrollTo({
-          top: Math.max(0, Math.min(window.scrollY + delta, maxScroll)),
-          behavior: 'auto',
-        })
+        const next = Math.max(0, Math.min(window.scrollY + delta, maxScroll))
+        window.scrollTo({ top: next, behavior: 'auto' })
+        syncNarrativeFromScroll(null, next)
       }
     }
 
