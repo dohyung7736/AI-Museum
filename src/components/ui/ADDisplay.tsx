@@ -27,7 +27,7 @@ export function ADDisplay({
         'inline-flex items-baseline gap-1.5 tabular-nums',
         sizeClass[size],
         variant === 'plain'
-          ? 'font-mono text-[var(--color-text)]'
+          ? 'font-mono text-[var(--year-display-text)]'
           : 'text-aa-counter',
         className,
       )}
@@ -35,7 +35,9 @@ export function ADDisplay({
       <span
         className={cn(
           'text-[10px] tracking-[0.14em] uppercase',
-          variant === 'plain' ? 'text-[var(--color-muted)]' : 'text-aa-prefix',
+          variant === 'plain'
+            ? 'text-[var(--year-display-prefix)]'
+            : 'text-aa-prefix',
         )}
       >
         AD

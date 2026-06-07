@@ -161,13 +161,13 @@
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
-  color: var(--color-biolum);
-  text-shadow: var(--glow-biolum);
+  color: var(--year-display-text, var(--color-biolum));
+  text-shadow: var(--year-display-glow, var(--glow-biolum));
 }
 
 .text-aa-prefix {
   font-size: 0.85em;
-  color: var(--color-muted);
+  color: var(--year-display-prefix, var(--color-muted));
   letter-spacing: 0.06em;
   opacity: 0.9;
 }

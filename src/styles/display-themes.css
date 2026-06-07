@@ -1,0 +1,255 @@
+/**
+ * Display themes (light / default / dark) + ecosystem neon reveal (--eco-reveal 0→1).
+ * Shell + global --color-* tokens stay in sync for readable text on each background.
+ */
+
+@layer base {
+  html {
+    --eco-reveal: 0;
+
+    /* Ecosystem target — bright neon blue (applied as handoff completes) */
+    --eco-stage-bg: #0b1a32;
+    --eco-lane-bg: #061222;
+    --eco-text: #ecf8ff;
+    --eco-text-body: #a8cce8;
+    --eco-text-meta: #6a94bc;
+    --eco-accent: #3dd5ff;
+    --eco-divider: rgba(61, 213, 255, 0.18);
+    --eco-biolum: #4de8ff;
+    --eco-phosphor: #7ee8ff;
+    --eco-muted: #5a8ab0;
+  }
+
+  /* ── Default (archival navy prologue) ── */
+  html:not([data-display-theme]),
+  html[data-display-theme='default'] {
+    --theme-stage-bg: #0e1520;
+    --theme-lane-bg: #070b12;
+    --theme-divider: rgba(255, 255, 255, 0.1);
+    --theme-text: #f2f6fb;
+    --theme-text-body: #c5d0dc;
+    --theme-text-meta: #8a97a8;
+    --theme-accent: #7ee8dc;
+    --theme-year: #f2f6fb;
+    --theme-year-prefix: #8a97a8;
+    --theme-year-glow: none;
+
+    --color-surface: #0e1520;
+    --color-abyss: #0e1520;
+    --color-deep: #121c2a;
+    --color-text: #f2f6fb;
+    --color-text-dim: #c5d0dc;
+    --color-text-ghost: #8a97a8;
+    --color-muted: #8a97a8;
+    --color-phosphor: #7ee8dc;
+    --color-biolum: #5eead4;
+  }
+
+  /* ── Light (warm paper — high contrast dark text) ── */
+  html[data-display-theme='light'] {
+    --theme-stage-bg: #f5f2eb;
+    --theme-lane-bg: #e9e4da;
+    --theme-divider: rgba(18, 22, 30, 0.14);
+    --theme-text: #0c1018;
+    --theme-text-body: #2a3340;
+    --theme-text-meta: #5a6575;
+    --theme-accent: #1a56a8;
+    --theme-year: #0c1018;
+    --theme-year-prefix: #5a6575;
+    --theme-year-glow: none;
+
+    --color-surface: #f5f2eb;
+    --color-abyss: #f5f2eb;
+    --color-deep: #ddd8cf;
+    --color-text: #0c1018;
+    --color-text-dim: #2a3340;
+    --color-text-ghost: #5a6575;
+    --color-muted: #5a6575;
+    --color-phosphor: #1a56a8;
+    --color-biolum: #1565b8;
+  }
+
+  /* ── Dark (deeper black, brighter text) ── */
+  html[data-display-theme='dark'] {
+    --theme-stage-bg: #04070c;
+    --theme-lane-bg: #020408;
+    --theme-divider: rgba(255, 255, 255, 0.09);
+    --theme-text: #f4f8fc;
+    --theme-text-body: #b8c8d8;
+    --theme-text-meta: #728498;
+    --theme-accent: #6ee7d8;
+    --theme-year: #f4f8fc;
+    --theme-year-prefix: #728498;
+    --theme-year-glow: none;
+
+    --color-surface: #04070c;
+    --color-abyss: #04070c;
+    --color-deep: #0a1018;
+    --color-text: #f4f8fc;
+    --color-text-dim: #b8c8d8;
+    --color-text-ghost: #728498;
+    --color-muted: #728498;
+    --color-phosphor: #6ee7d8;
+    --color-biolum: #2dd4bf;
+  }
+
+  /* Ecosystem overrides per display theme (neon blue tint on top of base) */
+  html[data-display-theme='default'][data-museum-zone='ecosystem'],
+  html[data-display-theme='default'][data-eco-revealing='true'] {
+    --theme-stage-bg: #0b1a32;
+    --theme-lane-bg: #061222;
+    --theme-divider: rgba(61, 213, 255, 0.16);
+    --theme-text: #ecf8ff;
+    --theme-text-body: #a8cce8;
+    --theme-text-meta: #6a94bc;
+    --theme-accent: #3dd5ff;
+    --theme-year: #ecf8ff;
+    --theme-year-prefix: #6a94bc;
+    --theme-year-glow: 0 0 28px rgba(61, 213, 255, 0.35);
+
+    --color-surface: #0b1a32;
+    --color-abyss: #0b1a32;
+    --color-deep: #0f2442;
+    --color-text: #ecf8ff;
+    --color-text-dim: #a8cce8;
+    --color-text-ghost: #6a94bc;
+    --color-muted: #6a94bc;
+    --color-phosphor: #7ee8ff;
+    --color-biolum: #4de8ff;
+  }
+
+  html[data-display-theme='light'][data-museum-zone='ecosystem'],
+  html[data-display-theme='light'][data-eco-revealing='true'] {
+    --theme-stage-bg: #dceaf8;
+    --theme-lane-bg: #c8dcf0;
+    --theme-divider: rgba(14, 80, 140, 0.16);
+    --theme-text: #061428;
+    --theme-text-body: #1a3a5c;
+    --theme-text-meta: #3d6080;
+    --theme-accent: #0077cc;
+    --theme-year: #061428;
+    --theme-year-prefix: #3d6080;
+    --theme-year-glow: 0 0 24px rgba(0, 140, 220, 0.28);
+
+    --color-surface: #dceaf8;
+    --color-abyss: #dceaf8;
+    --color-deep: #b8d4ec;
+    --color-text: #061428;
+    --color-text-dim: #1a3a5c;
+    --color-text-ghost: #3d6080;
+    --color-muted: #3d6080;
+    --color-phosphor: #0077cc;
+    --color-biolum: #0090e0;
+  }
+
+  html[data-display-theme='dark'][data-museum-zone='ecosystem'],
+  html[data-display-theme='dark'][data-eco-revealing='true'] {
+    --theme-stage-bg: #061018;
+    --theme-lane-bg: #030a12;
+    --theme-divider: rgba(77, 232, 255, 0.14);
+    --theme-text: #e8f8ff;
+    --theme-text-body: #9ec8e8;
+    --theme-text-meta: #5a88b0;
+    --theme-accent: #4de8ff;
+    --theme-year: #e8f8ff;
+    --theme-year-prefix: #5a88b0;
+    --theme-year-glow: 0 0 32px rgba(77, 232, 255, 0.4);
+
+    --color-surface: #061018;
+    --color-abyss: #061018;
+    --color-deep: #0a1828;
+    --color-text: #e8f8ff;
+    --color-text-dim: #9ec8e8;
+    --color-text-ghost: #5a88b0;
+    --color-muted: #5a88b0;
+    --color-phosphor: #4de8ff;
+    --color-biolum: #22d3ee;
+  }
+
+  /* Blended tokens — interpolate prologue → ecosystem during handoff */
+  html {
+    --shell-stage-bg: color-mix(
+      in srgb,
+      var(--theme-stage-bg) calc((1 - var(--eco-reveal)) * 100%),
+      var(--eco-stage-bg)
+    );
+    --shell-lane-bg: color-mix(
+      in srgb,
+      var(--theme-lane-bg) calc((1 - var(--eco-reveal)) * 100%),
+      var(--eco-lane-bg)
+    );
+    --shell-divider: color-mix(
+      in srgb,
+      var(--theme-divider) calc((1 - var(--eco-reveal)) * 100%),
+      var(--eco-divider)
+    );
+    --shell-text: color-mix(
+      in srgb,
+      var(--theme-text) calc((1 - var(--eco-reveal)) * 100%),
+      var(--eco-text)
+    );
+    --shell-text-body: color-mix(
+      in srgb,
+      var(--theme-text-body) calc((1 - var(--eco-reveal)) * 100%),
+      var(--eco-text-body)
+    );
+    --shell-text-meta: color-mix(
+      in srgb,
+      var(--theme-text-meta) calc((1 - var(--eco-reveal)) * 100%),
+      var(--eco-text-meta)
+    );
+    --shell-accent: color-mix(
+      in srgb,
+      var(--theme-accent) calc((1 - var(--eco-reveal)) * 100%),
+      var(--eco-accent)
+    );
+    --year-display-text: color-mix(
+      in srgb,
+      var(--theme-year) calc((1 - var(--eco-reveal)) * 100%),
+      var(--eco-text)
+    );
+    --year-display-prefix: color-mix(
+      in srgb,
+      var(--theme-year-prefix) calc((1 - var(--eco-reveal)) * 100%),
+      var(--eco-text-meta)
+    );
+    --year-display-glow: var(--theme-year-glow);
+
+    --color-text: var(--shell-text);
+    --color-text-dim: var(--shell-text-body);
+    --color-text-ghost: var(--shell-text-meta);
+    --color-muted: var(--shell-text-meta);
+    --color-phosphor: var(--shell-accent);
+    --color-biolum: color-mix(
+      in srgb,
+      var(--theme-accent) calc((1 - var(--eco-reveal)) * 100%),
+      var(--eco-biolum)
+    );
+    --color-surface: var(--shell-stage-bg);
+    --color-abyss: var(--shell-stage-bg);
+    --color-deep: var(--shell-lane-bg);
+  }
+
+  html[data-museum-zone='ecosystem'] {
+    --year-display-glow: 0 0 28px rgba(61, 213, 255, 0.32);
+  }
+
+  html[data-display-theme='light'] .tooltip-panel {
+    background: rgba(255, 255, 255, 0.96);
+    border-color: rgba(18, 30, 48, 0.12);
+  }
+
+  html[data-display-theme='light'] .layer-effects {
+    opacity: 0.12;
+  }
+
+  html,
+  .museum-shell,
+  .museum-shell__quad,
+  .museum-shell__stage-bg {
+    transition:
+      background-color 1.1s var(--ease-cinematic),
+      color 0.9s var(--ease-cinematic),
+      border-color 0.9s var(--ease-cinematic);
+  }
+}
